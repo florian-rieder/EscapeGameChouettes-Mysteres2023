@@ -1,15 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Escape Game Chouettes</title>
-</head>
-<body>
 
-    
-    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="home">
+        <div>
+            <img src="static/img/happy_clutch3.png" alt="Portée en bonne santé" class="clutch-img">
+            <img src="static/img/sick_clutch.png" alt="Portée en mauvaise santé" class="clutch-img">
+        </div>
+        <div>
+            <button id="food-workshop-btn">Atelier "Nourriture"</button>
+            <button id="biometric-workshop-btn">Atelier "Mesures biométriques"</button>
+            <button id="nest-workshop-btn">Atelier "Nichoir"</button>
+        </div>
+    </div>
+
+    <div id="workshops">
+        <div id="food-workshop" class="workshop-container hidden">
+            <h1>Atelier "Nourriture"</h1>
+            <div class="workshop-inner">
+                <h2>Où est-ce que les parents devraient aller chasser ?</h2>
+                <div id="food-choices">
+                    <button id="food-choice-A">Dans le champ A</button>
+                    <button id="food-choice-B">Dans le champ B</button>
+                    <div id="food-result-A" class="hidden">
+                        <p>Raté ! La nourriture provenant de ce champ contient des pesticides, votre
+                            nichée va moins bien.</p>
+                    </div>
+                    <div id="food-result-B" class="hidden">
+                        <p>BRAVO ! Votre nichée va mieux, car leur nourriture provient d'un champ sans
+                            pesticide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="biometric-workshop" class="workshop-container hidden">
+            <h1>Atelier "Mesures biométriques"</h1>
+            <div class="workshop-inner">
+                <div>
+                    <h2>1. Etat physique général des 2 mâles</h2>
+                    <button>Un des mâle est en mauvais état</button>
+                    <button>Les 2 mâles ont l'air en bon état</button>
+                    <div id="biometric-result-1A" class="success">
+                        <p>Apporter le plus vite possible l'oiseau au centre de soin le plus proche</p>
+                    </div>
+                    <div id="biometric-result-1B" class="success">
+                        <p>Super, alors contrôlez leur condition physique.</p>
+                    </div>
+                </div>
+                <div>
+                    <h2>2. Condition physique</h2>
+                    <button>Les 2 mâles ont la même condition physique</button>
+                    <button>Un des deux mâles est en mauvaise condition</button>
+                    <div id="biometric-result-2A" class="error">
+                        <p>Êtes-vous sûr de ça ?</p>
+                    </div>
+                    <div id="biometric-result-2B" class="success">
+                        <p>Qu'est-ce qui peut affecter son poids ?</p>
+                    </div>
+                </div>
+                <div>
+                    <h2>3. Etat des plumes</h2>
+                    <button>Les 2 mâles ont le même nombre de plumes sur leur aile.</button>
+                    <button>Un des deux mâles a perdu une ou plusieurs plumes</button>
+                    <div id="biometric-result-3A" class="error">
+                        <p>Êtes-vous sûr de ça ?</p>
+                    </div>
+                    <div id="biometric-result-3B" class="success">
+                        <p>C'est correct ! Et cette plume est essentielle à l'efficacité de la chasse, car elle rend le
+                            vol des chouettes absolument silencieux. Sans cette plume, notre mâle a de la peine à
+                            capturer des proies pour sa nichée.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="nest-workshop" class="workshop-container hidden">
+            <h1>Atelier "Nichoir"</h1>
+            <div class="workshop-inner">
+                <div>
+                    <h2>Écouter les chants/cris de chaque espèce</h2>
+                    <div id="nest-sing-container">
+                        <button id="nest-btn-merle">A: Chant de merle</button>
+                        <button id="nest-btn-effraie">B: Cri d'effraie</button>
+                        <button id="nest-btn-hulotte">C: Cri de hulotte</button>
+                        <button id="nest-btn-loriot">D: Chant de loriot</button>
+                        <button id="nest-btn-mesange">E: Chant de mésange</button>
+                        <button id="nest-btn-effraie2">F: Cri d'effraie</button>
+                    </div>
+                    <div id="nest-results-container">
+                        <div id="nest-result-A" class="hidden">Code: 123</div>
+                        <div id="nest-result-B" class="hidden">Code: 427</div>
+                        <div id="nest-result-C" class="hidden">Code: 589</div>
+                        <div id="nest-result-D" class="hidden">Code: 659</div>
+                        <div id="nest-result-E" class="hidden">Code: 216</div>
+                        <div id="nest-result-F" class="hidden">Code: 846</div>
+                    </div>
+                </div>
+                <div>
+                    <h2>Déplacer le nichoir</h2>
+                    <div>
+                        p5 ?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="static/js/howler.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

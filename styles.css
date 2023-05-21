@@ -1,0 +1,19 @@
+.hidden {
+    display: none;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+button {
+    padding: 2em;
+}
+
+.clutch-img {
+    width: 300px;
+}
