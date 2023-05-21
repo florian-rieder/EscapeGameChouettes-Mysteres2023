@@ -7,7 +7,7 @@
     src: url("static/fonts/SunnySunday.ttf");
 }
 
-title{
+#main-title{
     font-family: "SunnySunday";
 }
 
@@ -74,4 +74,9 @@ button.util-btn {
 
 .space-around{
     justify-content: space-around;
+}
+
+.workshop-container{
+    margin-left: 2em;
+    margin-right: 3em;
 }

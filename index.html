@@ -12,7 +12,9 @@
 
 <body>
     <div id="home">
-        <h1 id="main-title">Escape Game Chouettes</h1>
+        <div class="flex justify-center">
+            <h1 id="main-title">&lt;Escape Game Chouettes&gt;</h1>
+        </div>
         <div class="flex justify-center">
             <img src="static/img/happy_clutch3.png" alt="Portée en bonne santé" class="clutch-img hidden">
             <img src="static/img/sick_clutch.png" alt="Portée en mauvaise santé" class="clutch-img">
@@ -39,11 +41,11 @@
                     <button id="food-choice-A" class="choice-btn">Dans le champ A</button>
                     <button id="food-choice-B" class="choice-btn">Dans le champ B</button>
                 </div>
-                <div id="food-results">
+                <div id="food-results" class="flex justify-center">
                     <div id="food-result-A" class="hidden">
                         <p>Raté ! La nourriture provenant de ce champ contient des pesticides, votre
                             nichée va moins bien.</p>
-                            <button id="back-btn-food-choices-A" class="util-btn">Retour au choix des proies</button>
+                        <button id="back-btn-food-choices-A" class="util-btn">Retour au choix des proies</button>
                     </div>
                     <div id="food-result-B" class="hidden">
                         <p>BRAVO ! Votre nichée va mieux, car leur nourriture provient d'un champ sans
@@ -56,40 +58,64 @@
         <div id="biometric-workshop" class="workshop-container hidden">
             <h1>Atelier "Mesures biométriques"</h1>
             <div class="workshop-inner">
-                <div>
+                <div id="bio-step-1">
                     <h2>1. Etat physique général des 2 mâles</h2>
-                    <button class="choice-btn">Un des mâle est en mauvais état</button>
-                    <button class="choice-btn">Les 2 mâles ont l'air en bon état</button>
-                    <div id="biometric-result-1A" class="success">
-                        <p>Apporter le plus vite possible l'oiseau au centre de soin le plus proche</p>
+                    <div id="bio-choices-1" class="flex justify-center">
+                        <button id="bio-choice-1A" class="choice-btn">Un des mâle est en mauvais état</button>
+                        <button id="bio-choice-1B" class="choice-btn">Les 2 mâles ont l'air en bon état</button>
                     </div>
-                    <div id="biometric-result-1B" class="success">
-                        <p>Super, alors contrôlez leur condition physique.</p>
+                    <div class="flex justify-center">
+                        <div id="bio-result-1A" class="success hidden">
+                            <p>Apportez le plus vite possible l'oiseau au centre de soin le plus proche !</p>
+                            <button id="back-bio-choice-1A" class="util-btn">Retour</button>
+                        </div>
+                        <div id="bio-result-1B" class="success hidden">
+                            <p>Super, alors contrôlez leur condition physique.</p>
+                            <button id="back-bio-choice-1B" class="util-btn">Prochaine étape</button>
+                        </div>
                     </div>
                 </div>
-                <div>
+
+                <div id="bio-step-2" class="hidden">
                     <h2>2. Condition physique</h2>
-                    <button class="choice-btn">Les 2 mâles ont la même condition physique</button>
-                    <button class="choice-btn">Un des deux mâles est en mauvaise condition</button>
-                    <div id="biometric-result-2A" class="error">
-                        <p>Êtes-vous sûr de ça ?</p>
+                    <div id="bio-choices-2" class="flex justify-center">
+                        <button id="bio-choice-2A" class="choice-btn">Les 2 mâles ont la même condition
+                            physique</button>
+                        <button id="bio-choice-2B" class="choice-btn">Un des deux mâles est en mauvaise
+                            condition</button>
                     </div>
-                    <div id="biometric-result-2B" class="success">
-                        <p>Qu'est-ce qui peut affecter son poids ?</p>
+                    <div class="flex justify-center">
+                        <div id="bio-result-2A" class="error hidden">
+                            <p>Êtes-vous sûr de ça ?</p>
+                            <button id="back-bio-choice-2A" class="util-btn">Retour</button>
+                        </div>
+                        <div id="bio-result-2B" class="success hidden">
+                            <p>Qu'est-ce qui peut affecter son poids ?</p>
+                            <button id="back-bio-choice-2B" class="util-btn">Prochaine étape</button>
+                        </div>
                     </div>
                 </div>
-                <div>
+
+                <div id="bio-step-3" class="hidden">
                     <h2>3. Etat des plumes</h2>
-                    <button class="choice-btn">Les 2 mâles ont le même nombre de plumes sur leur aile.</button>
-                    <button class="choice-btn">Un des deux mâles a perdu une ou plusieurs plumes</button>
-                    <div id="biometric-result-3A" class="error">
-                        <p>Êtes-vous sûr de ça ?</p>
+                    <div id="bio-choices-3" class="flex justif-center">
+                        <button id="bio-choice-3A" class="choice-btn">Les 2 mâles ont le même nombre de plumes sur leur
+                            aile.</button>
+                        <button id="bio-choice-3B" class="choice-btn">Un des deux mâles a perdu une ou plusieurs
+                            plumes</button>
                     </div>
-                    <div id="biometric-result-3B" class="success">
+                    <div class="flex justify-center">
+                    <div id="bio-result-3A" class="error hidden">
+                        <p>Êtes-vous sûr de ça ?</p>
+                        <button id="back-bio-choice-3A" class="util-btn">Retour</button>
+                    </div>
+                    <div id="bio-result-3B" class="success hidden">
                         <p>C'est correct ! Et cette plume est essentielle à l'efficacité de la chasse, car elle rend le
                             vol des chouettes absolument silencieux. Sans cette plume, notre mâle a de la peine à
                             capturer des proies pour sa nichée.</p>
+                        <button id="back-bio-choice-3B" class="util-btn">Retour au menu</button>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
