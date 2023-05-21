@@ -2,18 +2,44 @@
     font-family: "Stanberry";
     src: url("static/fonts/Stanberry.ttf");
 }
+
 @font-face {
     font-family: "SunnySunday";
     src: url("static/fonts/SunnySunday.ttf");
 }
 
-#main-title{
+#main-title {
     font-family: "SunnySunday";
 }
 
-body{
+body {
     font-family: "Stanberry";
     margin: 1em;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 2em);
+}
+
+#health-bar-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#content-container{
+    flex-grow: 100;
+}
+
+#home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
 .hidden {
@@ -28,10 +54,15 @@ body{
     color: green;
 }
 
-button{
+button {
     font-family: "Stanberry";
     border: 0;
-    border-radius: 4px;
+    border-radius: 8px;
+}
+
+#home button {
+    padding: 1em;
+    font-size: 18pt;
 }
 
 button.choice-btn {
@@ -45,38 +76,101 @@ button.util-btn {
     color: white;
 }
 
-#back-btn{
+#back-btn {
     position: absolute;
     top: 1em;
     right: 1em;
-}
-
-#home button{
-    padding: 2em;
-    font-size: 20pt;
 }
 
 .clutch-img {
     width: 300px;
 }
 
-#main-title{
-    font-size: 3em;
+#main-title {
+    text-align: center;
+    font-size: 4em;
+    margin-bottom: 3em;
 }
 
-.flex{
+.flex {
     display: flex;
 }
 
-.justify-center{
+.justify-center {
     justify-content: center;
 }
 
-.space-around{
+.space-around {
     justify-content: space-around;
 }
 
-.workshop-container{
+.workshop-container {
     margin-left: 2em;
     margin-right: 3em;
+}
+
+.jumping-image-container {
+    position: relative;
+    height: 200px;
+    /* adjust to match your image height */
+}
+
+.jumping-image {
+    position: absolute;
+    bottom: 0;
+    animation: jump 3s infinite alternate ease-out;
+    animation-delay: 3s;
+    transform-origin: bottom center;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0) scaleY(1) scaleX(1);
+    }
+    75% {
+        transform: translateY(0) scaleY(1) scaleX(1);
+    }
+
+    100% {
+        transform: translateY(-50px) scaleY(1.1) scaleX(0.9);
+    }
+}
+
+.custom-progress-bar__container {
+    width: 100%; /* width of the bar */
+    height: 2rem;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    will-change: transform;
+    box-shadow: 0 0 5px black;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.custom-progress-bar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-color: #d14d58;
+    top:0;
+    bottom: 0;
+    left: -100%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: white;
+    font-family: sans-serif;
+}
+
+.custom-progress-bar__text {
+    display: none;
+}
+
+#health-bar-label{
+    font-size: 10pt;
+    color: grey;
 }

@@ -54,8 +54,53 @@ const sounds = {
 /* ------------------------------------------------------------------------- */
 
 
-const originalHealth = 10;
-let health = originalHealth;
+const originalHealth = 30;
+let health;
+
+const sickClutch = fromId("sick-clutch");
+const happyClutch = fromId("happy-clutch");
+
+setHealth(originalHealth); // Initialize the health bar
+
+function setHealth(newHealth){
+    health = newHealth;
+    if (health > 50){
+        show(happyClutch);
+        hide(sickClutch);
+    } else {
+        show(sickClutch);
+        hide(happyClutch);
+    }
+    setProgressBar(health);
+}
+
+function setProgressBar(percentage) {
+    /** 
+     * Sets the progress bar to a certain percentage
+     * Based on: https://codepen.io/alvarotrigo/pen/vYeNpjj
+     * Uses GSAP
+     * @param {float} percentage - a value between 0 and 1
+     */
+
+    const progressBarContainer = query(".custom-progress-bar__container");
+    const progressBar = query(".custom-progress-bar");
+
+    if (percentage == 100) {
+        gsap.to(progressBar, {
+            x: `${percentage}%`,
+            duration: 1,
+            backgroundColor: "#4dd14f",
+            onComplete: () => {
+                progressBarContainer.style.boxShadow = "0 0 5px black";
+            }
+        });
+    } else {
+        gsap.to(progressBar, {
+            x: `${percentage}%`,
+            duration: 1,
+        });
+    }
+}
 
 
 /* ------------------------------------------------------------------------- */
@@ -134,7 +179,7 @@ function foodChoiceA() {
     foodButtonA.disabled = true;
 
 
-    health -= 10;
+    setHealth(health - 10);
 }
 
 function foodChoiceB() {
@@ -143,7 +188,7 @@ function foodChoiceB() {
     hide(foodChoices);
     foodWorkshopBtn.disabled = true;
 
-    health += 20;
+    setHealth(health + 20);
 }
 
 
@@ -243,6 +288,7 @@ bioChoice3A.addEventListener("click", () => {
 bioChoice3B.addEventListener("click", () => {
     hide(bioChoices3);
     show(bioResult3B);
+    setHealth(health + 30);
 });
 
 bioBack3A.addEventListener("click", () => {
@@ -258,7 +304,6 @@ bioBack3B.addEventListener("click", () => {
     hide(bioResult3B);
     biometricWorkshopBtn.disabled = true;
     displayHome();
-    health += 30
 });
 
 /* ------------------------------------------------------------------------- */
