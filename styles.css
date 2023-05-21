@@ -1,5 +1,23 @@
+@font-face {
+    font-family: "Stanberry";
+    src: url("static/fonts/Stanberry.ttf");
+}
+@font-face {
+    font-family: "SunnySunday";
+    src: url("static/fonts/SunnySunday.ttf");
+}
+
+title{
+    font-family: "SunnySunday";
+}
+
+body{
+    font-family: "Stanberry";
+    margin: 1em;
+}
+
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .error {
@@ -10,10 +28,50 @@
     color: green;
 }
 
-button {
+button{
+    font-family: "Stanberry";
+    border: 0;
+    border-radius: 4px;
+}
+
+button.choice-btn {
     padding: 2em;
+    margin: 1em;
+}
+
+button.util-btn {
+    padding: 1em;
+    background-color: rgb(47, 86, 155);
+    color: white;
+}
+
+#back-btn{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+#home button{
+    padding: 2em;
+    font-size: 20pt;
 }
 
 .clutch-img {
     width: 300px;
+}
+
+#main-title{
+    font-size: 3em;
+}
+
+.flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.space-around{
+    justify-content: space-around;
 }
