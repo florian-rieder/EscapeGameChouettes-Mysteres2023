@@ -9,6 +9,7 @@ const queryAll = document.querySelectorAll.bind(document);
 const fromId = document.getElementById.bind(document);
 const fromClass = document.getElementsByClassName.bind(document);
 const fromTag = document.getElementsByTagName.bind(document);
+const create = document.createElement.bind(document);
 
 function show(element) {
     element.classList.remove("hidden");
@@ -23,29 +24,47 @@ function hide(element) {
 /* --------------------------------- SETUP --------------------------------- */
 /* ------------------------------------------------------------------------- */
 
-
-const sounds = {
-    merle: new Howl({
-        src: ['static/audio/merle_noir.mp3']
-    }),
+const birdSongs = {
+    merle: {
+        code: 123,
+        sound: new Howl({
+            src: ['static/audio/merle_noir.mp3']
+        }),
+    },
+    effraie: {
+        code: 427,
+        sound: new Howl({
+            src: ['static/audio/effraie_clochers.mp3']
+        }),
+    },
+    hulotte: {
+        code: 589,
+        sound: new Howl({
+            src: ['static/audio/chouette_hulotte.mp3']
+        }),
+    },
+    loriot: {
+        code: 659,
+        sound: new Howl({
+            src: ['static/audio/loriot.mp3']
+        }),
+    },
+    mesange: {
+        code: 216,
+        sound: new Howl({
+            src: ['static/audio/mesange_bleue.mp3']
+        }),
+    },
+    // effraie2: {
+    //     code: 846,
+    //     sound: new Howl({
+    //         src: ['static/audio/effraie2.mp3']
+    //     }),
+    // },
     // faucon: new Howl({
     //     src: ['static/audio/faucon_crecerelle.mp3']
     // }),
-    loriot: new Howl({
-        src: ['static/audio/loriot.mp3']
-    }),
-    mesange: new Howl({
-        src: ['static/audio/mesange_bleue.mp3']
-    }),
-    effraie: new Howl({
-        src: ['static/audio/effraie_clochers.mp3']
-    }),
-    // effraie2: new Howl({
-    //     src: ['static/audio/effraie2.mp3']
-    // }),
-    hulotte: new Howl({
-        src: ['static/audio/chouette_hulotte.mp3']
-    }),
+
 };
 
 
@@ -57,14 +76,16 @@ const sounds = {
 const originalHealth = 30;
 let health;
 
-const sickClutch = fromId("sick-clutch");
-const happyClutch = fromId("happy-clutch");
 
 setHealth(originalHealth); // Initialize the health bar
 
-function setHealth(newHealth){
+function setHealth(newHealth) {
+    const sickClutch = fromId("sick-clutch");
+    const happyClutch = fromId("happy-clutch");
+
     health = newHealth;
-    if (health > 50){
+
+    if (health > 50) {
         show(happyClutch);
         hide(sickClutch);
     } else {
@@ -82,24 +103,12 @@ function setProgressBar(percentage) {
      * @param {float} percentage - a value between 0 and 1
      */
 
-    const progressBarContainer = query(".custom-progress-bar__container");
     const progressBar = query(".custom-progress-bar");
 
-    if (percentage == 100) {
-        gsap.to(progressBar, {
-            x: `${percentage}%`,
-            duration: 1,
-            backgroundColor: "#4dd14f",
-            onComplete: () => {
-                progressBarContainer.style.boxShadow = "0 0 5px black";
-            }
-        });
-    } else {
-        gsap.to(progressBar, {
-            x: `${percentage}%`,
-            duration: 1,
-        });
-    }
+    gsap.to(progressBar, {
+        x: `${percentage}%`,
+        duration: 1,
+    });
 }
 
 
@@ -111,6 +120,7 @@ function setProgressBar(percentage) {
 const home = fromId("home");
 const workshops = fromId("workshops");
 const backBtn = fromId("back-btn");
+
 backBtn.addEventListener("click", () => {
     stopAllSounds();
     displayHome();
@@ -204,8 +214,8 @@ const bioChoice1A = fromId("bio-choice-1A");
 const bioChoice1B = fromId("bio-choice-1B");
 const bioResult1A = fromId("bio-result-1A");
 const bioResult1B = fromId("bio-result-1B");
-const bioBack1A  = fromId("back-bio-choice-1A");
-const bioBack1B  = fromId("back-bio-choice-1B");
+const bioBack1A = fromId("back-bio-choice-1A");
+const bioBack1B = fromId("back-bio-choice-1B");
 
 // Step 2 - Condition physique
 const bioStep2 = fromId("bio-step-2");
@@ -214,8 +224,8 @@ const bioChoice2A = fromId("bio-choice-2A");
 const bioChoice2B = fromId("bio-choice-2B");
 const bioResult2A = fromId("bio-result-2A");
 const bioResult2B = fromId("bio-result-2B");
-const bioBack2A  = fromId("back-bio-choice-2A");
-const bioBack2B  = fromId("back-bio-choice-2B");
+const bioBack2A = fromId("back-bio-choice-2A");
+const bioBack2B = fromId("back-bio-choice-2B");
 
 // Step 3 - Plumes
 const bioStep3 = fromId("bio-step-3");
@@ -224,8 +234,8 @@ const bioChoice3A = fromId("bio-choice-3A");
 const bioChoice3B = fromId("bio-choice-3B");
 const bioResult3A = fromId("bio-result-3A");
 const bioResult3B = fromId("bio-result-3B");
-const bioBack3A  = fromId("back-bio-choice-3A");
-const bioBack3B  = fromId("back-bio-choice-3B");
+const bioBack3A = fromId("back-bio-choice-3A");
+const bioBack3B = fromId("back-bio-choice-3B");
 
 
 // Step 1
@@ -306,29 +316,87 @@ bioBack3B.addEventListener("click", () => {
     displayHome();
 });
 
+
 /* ------------------------------------------------------------------------- */
 /* ----------------------------- NEST WORKSHOP ----------------------------- */
 /* ------------------------------------------------------------------------- */
 
 
-fromId('nest-btn-merle').addEventListener('click', () => toggleSound(sounds.merle));
-fromId('nest-btn-mesange').addEventListener('click', () => toggleSound(sounds.mesange));
-fromId('nest-btn-loriot').addEventListener('click', () => toggleSound(sounds.loriot));
-fromId('nest-btn-hulotte').addEventListener('click', () => toggleSound(sounds.hulotte));
-fromId('nest-btn-effraie').addEventListener('click', () => toggleSound(sounds.effraie));
+fromId('nest-btn-merle').addEventListener('click', () => toggleSound(birdSongs.merle));
+fromId('nest-btn-mesange').addEventListener('click', () => toggleSound(birdSongs.mesange));
+fromId('nest-btn-loriot').addEventListener('click', () => toggleSound(birdSongs.loriot));
+fromId('nest-btn-hulotte').addEventListener('click', () => toggleSound(birdSongs.hulotte));
+fromId('nest-btn-effraie').addEventListener('click', () => toggleSound(birdSongs.effraie));
 //fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(sounds.effraie2));
 
-function toggleSound(sound) {
-    if (sound.playing()) {
-        sound.stop();
+const songsResults = fromId("nest-results-container");
+
+
+function toggleSound(singObject) {
+    songsResults.innerHTML = "Code: " + singObject.code
+    if (singObject.sound.playing()) {
+        singObject.sound.stop();
     } else {
         stopAllSounds();
-        sound.play();
+        singObject.sound.play();
     }
 }
 
 function stopAllSounds() {
-    for (const [_key, value] of Object.entries(sounds)) {
-        value.stop();
+    for (const [_key, value] of Object.entries(birdSongs)) {
+        value.sound.stop();
     }
+}
+
+const nestPlacementChoices = fromId("nest-choices");
+const nestResult = fromId("nest-placement-result");
+
+const btnNorth = fromId("nest-choice-north");
+const btnEast = fromId("nest-choice-east");
+const btnSouth = fromId("nest-choice-south");
+const btnWest = fromId("nest-choice-west");
+
+btnNorth.addEventListener("click", () => nestChoice("north"));
+btnEast.addEventListener("click", () => nestChoice("east"));
+btnSouth.addEventListener("click", () => nestChoice("south"));
+btnWest.addEventListener("click", () => nestChoice("west"));
+
+
+function nestChoice(choice) {
+    hide(nestPlacementChoices);
+
+    // Create "Retour" button
+    const returnButton = create("button");
+    returnButton.classList.add("util-btn");
+
+    let resultText = "";
+    if (choice == "north" || choice == "east") {
+        resultText = "Bravo ! Votre nichoir est bien placé, votre nichée va mieux !";
+        setHealth(health + 20);
+        //nestWorkshopBtn.disabled = true;
+
+        returnButton.addEventListener("click", displayHome);
+        returnButton.innerHTML = "Retour au menu";
+
+    } else {
+        resultText = "Raté ! Il fait trop chaud dans ce nichoir, votre nichée va moins bien";
+        setHealth(health - 10);
+        const id = "nest-choice-" + choice;
+        const btn = fromId(id);
+        btn.disabled = true;
+
+        returnButton.addEventListener("click", () => {
+            nestResult.innerHTML = ""; // delete results
+            show(nestPlacementChoices);
+        });
+        returnButton.innerHTML = "Retour au choix";
+    }
+
+    // Create feedback paragraph
+    const resultParagraph = create("p");
+    resultParagraph.innerHTML = resultText;
+
+    // Add to the page
+    nestResult.appendChild(resultParagraph);
+    nestResult.appendChild(returnButton);
 }

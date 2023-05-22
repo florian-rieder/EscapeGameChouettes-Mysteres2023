@@ -110,7 +110,7 @@
 
                         <div id="bio-step-3" class="hidden">
                             <h2>3. Etat des plumes</h2>
-                            <div id="bio-choices-3" class="flex justif-center">
+                            <div id="bio-choices-3" class="flex justify-center">
                                 <button id="bio-choice-3A" class="choice-btn">Les 2 mâles ont le même nombre de plumes
                                     sur leur
                                     aile.</button>
@@ -139,27 +139,38 @@
                     <div class="workshop-inner">
                         <div>
                             <h2>Écouter les chants/cris de chaque espèce</h2>
-                            <div id="nest-sing-container">
-                                <button id="nest-btn-merle">A: Chant de merle</button>
-                                <button id="nest-btn-effraie">B: Cri d'effraie</button>
-                                <button id="nest-btn-hulotte">C: Cri de hulotte</button>
-                                <button id="nest-btn-loriot">D: Chant de loriot</button>
-                                <button id="nest-btn-mesange">E: Chant de mésange</button>
-                                <button id="nest-btn-effraie2">F: Cri d'effraie</button>
+                            <div id="nest-sing-container" class="flex justify-center">
+                                <button id="nest-btn-merle" class="sing-btn">A: Chant de merle</button>
+                                <button id="nest-btn-effraie" class="sing-btn">B: Cri d'effraie</button>
+                                <button id="nest-btn-hulotte" class="sing-btn">C: Cri de hulotte</button>
+                                <button id="nest-btn-loriot" class="sing-btn">D: Chant de loriot</button>
+                                <button id="nest-btn-mesange" class="sing-btn">E: Chant de mésange</button>
+                                <button id="nest-btn-effraie2" class="sing-btn">F: Cri d'effraie (manquant)</button>
                             </div>
-                            <div id="nest-results-container">
-                                <div id="nest-result-A" class="hidden">Code: 123</div>
-                                <div id="nest-result-B" class="hidden">Code: 427</div>
-                                <div id="nest-result-C" class="hidden">Code: 589</div>
-                                <div id="nest-result-D" class="hidden">Code: 659</div>
-                                <div id="nest-result-E" class="hidden">Code: 216</div>
-                                <div id="nest-result-F" class="hidden">Code: 846</div>
+                            <div class="flex justify-center">
+                                <p id="nest-results-container"><!-- Populated by js --></p>
                             </div>
                         </div>
                         <div>
                             <h2>Déplacer le nichoir</h2>
+                            <p>Quel est le meilleur endroit où placer le nid ?</p>
                             <div>
-                                p5 ?
+                                <div id="nest-choices" class="flex justify-center">
+                                    <button class="choice-btn" id="nest-choice-north">Nord</button>
+                                    <button class="choice-btn" id="nest-choice-east">Est</button>
+                                    <button class="choice-btn" id="nest-choice-south">Sud</button>
+                                    <button class="choice-btn" id="nest-choice-west">Ouest</button>
+                                </div>
+                                <div id="nest-placement-result"></div>
+                                <!-- p5 ? -->
+                                <div class="flex justify-center">
+                                    <figure style="width: 400px">
+                                        <img id="bergerie-img" src="static/img/bergerie_nests.png"
+                                            alt="Vue aérienne de la bergerie, avec 4 emplacements de nids possibles, au nord, est, sud, et ouest de la bergerie.">
+                                        <label for="bergerie-img" id="nest-label">Vue aérienne de la bergerie, avec 4
+                                            emplacements de nids possibles</label>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </div>

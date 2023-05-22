@@ -17,13 +17,13 @@ body {
     margin: 1em;
 }
 
-.main-container{
+.main-container {
     display: flex;
     flex-direction: row;
     height: calc(100vh - 2em);
 }
 
-#health-bar-container{
+#health-bar-container {
     width: 30%;
     height: 100%;
     display: flex;
@@ -31,11 +31,11 @@ body {
     justify-content: center;
 }
 
-#content-container{
-    flex-grow: 100;
+#content-container {
+    width: 70%;
 }
 
-#home{
+#home {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,14 +76,20 @@ button.util-btn {
     color: white;
 }
 
+button.sing-btn {
+    padding: 1em;
+    margin: 1em;
+}
+
+label {
+    font-size: 10pt;
+    color: grey;
+}
+
 #back-btn {
     position: absolute;
     top: 1em;
     right: 1em;
-}
-
-.clutch-img {
-    width: 300px;
 }
 
 #main-title {
@@ -109,6 +115,16 @@ button.util-btn {
     margin-right: 3em;
 }
 
+#bergerie-img {
+    width: 400px;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.clutch-img {
+    width: 90%;
+}
+
 .jumping-image-container {
     position: relative;
     height: 200px;
@@ -127,6 +143,7 @@ button.util-btn {
     0% {
         transform: translateY(0) scaleY(1) scaleX(1);
     }
+
     75% {
         transform: translateY(0) scaleY(1) scaleX(1);
     }
@@ -137,7 +154,8 @@ button.util-btn {
 }
 
 .custom-progress-bar__container {
-    width: 100%; /* width of the bar */
+    width: 100%;
+    /* width of the bar */
     height: 2rem;
     border-radius: 4px;
     position: relative;
@@ -155,22 +173,17 @@ button.util-btn {
     width: 100%;
     content: "";
     background-color: #d14d58;
-    top:0;
+    top: 0;
     bottom: 0;
     left: -100%;
     border-radius: inherit;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     color: white;
     font-family: sans-serif;
 }
 
 .custom-progress-bar__text {
     display: none;
-}
-
-#health-bar-label{
-    font-size: 10pt;
-    color: grey;
 }
