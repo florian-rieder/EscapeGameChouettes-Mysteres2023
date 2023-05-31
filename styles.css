@@ -37,7 +37,7 @@ p {
 }
 
 #content-container {
-    width: 70%;
+    width: calc(70% - 2em);
 }
 
 #workshops {
@@ -130,7 +130,7 @@ label {
 
 .workshop-container {
     margin-left: 2em;
-    margin-right: 3em;
+    /*margin-right: 2em;*/
     width: 100%;
 }
 
