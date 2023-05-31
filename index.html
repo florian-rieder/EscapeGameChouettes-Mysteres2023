@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Escape Game Chouettes</title>
+    <title>Chouette, une escape game</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,24 +13,40 @@
 <body>
     <div class="main-container">
         <div id="health-bar-container">
-            <div class="flex justify-center jumping-image-container">
-                <img src="static/img/happy_clutch3.png" alt="Portée en bonne santé"
-                    class="clutch-img jumping-image hidden" id="happy-clutch">
-                <img src="static/img/sick_clutch.png" alt="Portée en mauvaise santé" class="clutch-img jumping-image"
-                    id="sick-clutch">
-            </div>
-            <div id="custom-progress-bar" class="custom-progress-bar-container">
-                <div class="custom-progress-bar__container">
-                    <div class="custom-progress-bar"></div>
+            <!-- Portée A en mauvaise santé -->
+            <div>
+                <div class="flex justify-center jumping-image-container">
+                    <img src="static/img/happy_clutch3.png" alt="Portée en bonne santé"
+                        class="clutch-img jumping-image hidden" id="happy-clutch">
+                    <img src="static/img/sick_clutch.png" alt="Portée en mauvaise santé"
+                        class="clutch-img jumping-image" id="sick-clutch">
                 </div>
+                <div id="custom-progress-bar" class="custom-progress-bar-container">
+                    <div class="custom-progress-bar__container">
+                        <div class="custom-progress-bar" id="custom-progress-bar1"></div>
+                    </div>
+                </div>
+                <label for="custom-progress-bar" id="health-bar-label">Santé de la portée A</label>
             </div>
-            <label for="custom-progress-bar" id="health-bar-label">Santé de la portée</label>
+            <!-- Portée B en bonne santé -->
+            <div>
+                <div class="flex justify-center jumping-image-container">
+                    <img src="static/img/happy_clutch3.png" alt="Portée en bonne santé"
+                        class="clutch-img jumping-image">
+                </div>
+                <div class="custom-progress-bar-container">
+                    <div class="custom-progress-bar__container">
+                        <div class="custom-progress-bar" id="custom-progress-bar2"></div>
+                    </div>
+                </div>
+                <label for="custom-progress-bar2" id="health-bar-label">Santé de la portée B</label>
+            </div>
 
         </div>
         <div id="content-container">
             <div id="home">
                 <div class="flex justify-center ">
-                    <h1 id="main-title">&lt;Escape Game Chouettes&gt;</h1>
+                    <h1 id="main-title">&lt;Chouette, une escape game&gt;</h1>
                 </div>
 
                 <div class="flex space-around">
@@ -52,32 +68,33 @@
                             <button id="food-choice-A" class="choice-btn">Dans le champ A</button>
                             <button id="food-choice-B" class="choice-btn">Dans le champ B</button>
                         </div>
-                        <div id="food-results" class="flex justify-center">
-                            <div id="food-result-A" class="hidden">
+                        <div id="food-results">
+                            <div id="food-result-A" class="error hidden">
                                 <p>Raté ! La nourriture provenant de ce champ contient des pesticides, votre
                                     nichée va moins bien.</p>
                                 <button id="back-btn-food-choices-A" class="util-btn">Retour au choix des
                                     proies</button>
                             </div>
-                            <div id="food-result-B" class="hidden">
+                            <div id="food-result-B" class="success hidden">
                                 <p>BRAVO ! Votre nichée va mieux, car leur nourriture provient d'un champ sans
                                     pesticide.</p>
-                                <button id="back-btn-food-choices-B" class="util-btn">Retour au menu</button>
+                                <button id="back-btn-food-choices-B" class="util-btn">Félicitations, vous pouvez passer
+                                    à l'atelier suivant</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="biometric-workshop" class="workshop-container hidden">
-                    <h1>Atelier "Mesures biométriques"</h1>
                     <div class="workshop-inner">
+                        <h1>Atelier "Mesures biométriques"</h1>
                         <div id="bio-step-1">
                             <h2>1. Etat physique général des 2 mâles</h2>
                             <div id="bio-choices-1" class="flex justify-center">
                                 <button id="bio-choice-1A" class="choice-btn">Un des mâle est en mauvais état</button>
                                 <button id="bio-choice-1B" class="choice-btn">Les 2 mâles ont l'air en bon état</button>
                             </div>
-                            <div class="flex justify-center">
-                                <div id="bio-result-1A" class="success hidden">
+                            <div>
+                                <div id="bio-result-1A" class="hidden">
                                     <p>Apportez le plus vite possible l'oiseau au centre de soin le plus proche !</p>
                                     <button id="back-bio-choice-1A" class="util-btn">Retour</button>
                                 </div>
@@ -96,13 +113,13 @@
                                 <button id="bio-choice-2B" class="choice-btn">Un des deux mâles est en mauvaise
                                     condition</button>
                             </div>
-                            <div class="flex justify-center">
+                            <div>
                                 <div id="bio-result-2A" class="error hidden">
                                     <p>Êtes-vous sûr de ça ?</p>
                                     <button id="back-bio-choice-2A" class="util-btn">Retour</button>
                                 </div>
                                 <div id="bio-result-2B" class="success hidden">
-                                    <p>Qu'est-ce qui peut affecter son poids ?</p>
+                                    <p>Qu’est-ce qui peut affecter sa condition physique ?</p>
                                     <button id="back-bio-choice-2B" class="util-btn">Prochaine étape</button>
                                 </div>
                             </div>
@@ -117,7 +134,7 @@
                                 <button id="bio-choice-3B" class="choice-btn">Un des deux mâles a perdu une ou plusieurs
                                     plumes</button>
                             </div>
-                            <div class="flex justify-center">
+                            <div>
                                 <div id="bio-result-3A" class="error hidden">
                                     <p>Êtes-vous sûr de ça ?</p>
                                     <button id="back-bio-choice-3A" class="util-btn">Retour</button>
@@ -128,55 +145,56 @@
                                         le vol des chouettes absolument silencieux. Sans cette plume, notre mâle a de la
                                         peine à
                                         capturer des proies pour sa nichée.</p>
-                                    <button id="back-bio-choice-3B" class="util-btn">Retour au menu</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="nest-workshop" class="workshop-container hidden">
-                    <h1>Atelier "Nichoir"</h1>
-                    <div class="workshop-inner">
-                        <div>
-                            <h2>Écouter les chants/cris de chaque espèce</h2>
-                            <div id="nest-sing-container" class="flex justify-center">
-                                <button id="nest-btn-merle" class="sing-btn">A: Chant de merle</button>
-                                <button id="nest-btn-effraie" class="sing-btn">B: Cri d'effraie</button>
-                                <button id="nest-btn-hulotte" class="sing-btn">C: Cri de hulotte</button>
-                                <button id="nest-btn-loriot" class="sing-btn">D: Chant de loriot</button>
-                                <button id="nest-btn-mesange" class="sing-btn">E: Chant de mésange</button>
-                                <button id="nest-btn-effraie2" class="sing-btn">F: Cri d'effraie (manquant)</button>
-                            </div>
-                            <div class="flex justify-center">
-                                <p id="nest-results-container"><!-- Populated by js --></p>
-                            </div>
-                        </div>
-                        <div>
-                            <h2>Déplacer le nichoir</h2>
-                            <p>Quel est le meilleur endroit où placer le nid ?</p>
-                            <div>
-                                <div id="nest-choices" class="flex justify-center">
-                                    <button class="choice-btn" id="nest-choice-north">Nord</button>
-                                    <button class="choice-btn" id="nest-choice-east">Est</button>
-                                    <button class="choice-btn" id="nest-choice-south">Sud</button>
-                                    <button class="choice-btn" id="nest-choice-west">Ouest</button>
-                                </div>
-                                <div id="nest-placement-result"></div>
-                                <!-- p5 ? -->
-                                <div class="flex justify-center">
-                                    <figure style="width: 400px">
-                                        <img id="bergerie-img" src="static/img/bergerie_nests.png"
-                                            alt="Vue aérienne de la bergerie, avec 4 emplacements de nids possibles, au nord, est, sud, et ouest de la bergerie.">
-                                        <label for="bergerie-img" id="nest-label">Vue aérienne de la bergerie, avec 4
-                                            emplacements de nids possibles</label>
-                                    </figure>
+                                    <button id="back-bio-choice-3B" class="util-btn">Félicitations, vous pouvez passer à
+                                        l'atelier suivant</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="nest-workshop" class="workshop-container hidden">
+                <h1>Atelier "Nichoir"</h1>
+                <div class="workshop-inner">
+                    <div id="nest-step-1">
+                        <h2>1. Écouter les chants/cris de chaque espèce</h2>
+                        <div id="nest-sing-container" class="flex justify-center">
+                            <button id="nest-btn-merle" class="sing-btn">A</button>
+                            <button id="nest-btn-effraie" class="sing-btn">B</button>
+                            <button id="nest-btn-hulotte" class="sing-btn">C</button>
+                            <button id="nest-btn-loriot" class="sing-btn">D</button>
+                            <button id="nest-btn-mesange" class="sing-btn">E</button>
+                            <button id="nest-btn-effraie2" class="sing-btn">F</button>
+                        </div>
+                        <div class="flex justify-center">
+                            <p id="nest-results-container"><!-- Populated by js --></p>
+                        </div>
+                    </div>
+                    <div id="nest-step-2">
+                        <h2>2. Déplacer le nichoir</h2>
+                        <p>Quel est le meilleur endroit où placer le nid ?</p>
+                        <div>
+                            <div id="nest-choices" class="flex justify-center">
+                                <button class="choice-btn" id="nest-choice-north">Nord</button>
+                                <button class="choice-btn" id="nest-choice-east">Est</button>
+                                <button class="choice-btn" id="nest-choice-south">Sud</button>
+                                <button class="choice-btn" id="nest-choice-west">Ouest</button>
+                            </div>
+                            <div id="nest-placement-result"></div>
+                            <div class="flex justify-center">
+                                <figure style="width: 400px">
+                                    <img id="bergerie-img" src="static/img/bergerie_nests.png"
+                                        alt="Vue aérienne de la bergerie, avec 4 emplacements de nids possibles, au nord, est, sud, et ouest de la bergerie.">
+                                    <label for="bergerie-img" id="nest-label">Vue aérienne de la bergerie, avec 4
+                                        emplacements de nids possibles</label>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 
 

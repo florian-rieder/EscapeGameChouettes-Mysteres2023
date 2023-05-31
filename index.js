@@ -55,16 +55,12 @@ const birdSongs = {
             src: ['static/audio/mesange_bleue.mp3']
         }),
     },
-    // effraie2: {
-    //     code: 846,
-    //     sound: new Howl({
-    //         src: ['static/audio/effraie2.mp3']
-    //     }),
-    // },
-    // faucon: new Howl({
-    //     src: ['static/audio/faucon_crecerelle.mp3']
-    // }),
-
+    effraie2: {
+        code: 846,
+        sound: new Howl({
+            src: ['static/audio/effraie_clochers.mp3']
+        }),
+    }
 };
 
 
@@ -76,7 +72,15 @@ const birdSongs = {
 const originalHealth = 30;
 let health;
 
+// Initialize the health bar for clutch B at 100%
+const secondBar = fromId("custom-progress-bar2");
+gsap.to(secondBar, {
+    x: `100%`,
+    duration: 1,
+    backgroundColor: "green",
+});
 
+// Initialize the health bar for clutch A at original health
 setHealth(originalHealth); // Initialize the health bar
 
 function setHealth(newHealth) {
@@ -103,11 +107,19 @@ function setProgressBar(percentage) {
      * @param {float} percentage - a value between 0 and 1
      */
 
-    const progressBar = query(".custom-progress-bar");
+    const progressBar = fromId("custom-progress-bar1");
 
+    // let newColor = "red";
+    // if (percentage < 40){
+    //     newColor = gsap.utils.interpolate("red", "orange", percentage/100)
+    // } else if (percentage < 70){
+    //     newColor = gsap.utils.interpolate("orange", "green", percentage/100)
+    // }
+    let newColor = gsap.utils.interpolate(["red", "orange", "green"], percentage / 100)
     gsap.to(progressBar, {
         x: `${percentage}%`,
         duration: 1,
+        backgroundColor: newColor,
     });
 }
 
@@ -327,7 +339,7 @@ fromId('nest-btn-mesange').addEventListener('click', () => toggleSound(birdSongs
 fromId('nest-btn-loriot').addEventListener('click', () => toggleSound(birdSongs.loriot));
 fromId('nest-btn-hulotte').addEventListener('click', () => toggleSound(birdSongs.hulotte));
 fromId('nest-btn-effraie').addEventListener('click', () => toggleSound(birdSongs.effraie));
-//fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(sounds.effraie2));
+fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(sounds.effraie2));
 
 const songsResults = fromId("nest-results-container");
 
@@ -372,6 +384,7 @@ function nestChoice(choice) {
     let resultText = "";
     if (choice == "north" || choice == "east") {
         resultText = "Bravo ! Votre nichoir est bien placé, votre nichée va mieux !";
+        nestResult.classList.add("success");
         setHealth(health + 20);
         //nestWorkshopBtn.disabled = true;
 
@@ -380,13 +393,15 @@ function nestChoice(choice) {
 
     } else {
         resultText = "Raté ! Il fait trop chaud dans ce nichoir, votre nichée va moins bien";
+        nestResult.classList.add("error");
         setHealth(health - 10);
         const id = "nest-choice-" + choice;
         const btn = fromId(id);
         btn.disabled = true;
 
         returnButton.addEventListener("click", () => {
-            nestResult.innerHTML = ""; // delete results
+            nestResult.className = ""; // Remove all classes
+            nestResult.innerHTML = ""; // Delete results
             show(nestPlacementChoices);
         });
         returnButton.innerHTML = "Retour au choix";
