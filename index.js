@@ -11,13 +11,9 @@ const fromClass = document.getElementsByClassName.bind(document);
 const fromTag = document.getElementsByTagName.bind(document);
 const create = document.createElement.bind(document);
 
-function show(element) {
-    element.classList.remove("hidden");
-}
-
-function hide(element) {
-    element.classList.add("hidden");
-}
+// Shorthands for showing and hiding elements from view
+const show = element => element.classList.remove("hidden");
+const hide = element => element.classList.add("hidden");
 
 
 /* ------------------------------------------------------------------------- */
@@ -72,6 +68,12 @@ const birdSongs = {
 const originalHealth = 30;
 let health;
 
+const sickClutch = fromId("sick-clutch");
+const happyClutch = fromId("happy-clutch");
+
+// Initialize the health bar for clutch A at original health
+setHealth(originalHealth); // Initialize the health bar
+
 // Initialize the health bar for clutch B at 100%
 const secondBar = fromId("custom-progress-bar2");
 gsap.to(secondBar, {
@@ -80,16 +82,10 @@ gsap.to(secondBar, {
     backgroundColor: "green",
 });
 
-// Initialize the health bar for clutch A at original health
-setHealth(originalHealth); // Initialize the health bar
-
 function setHealth(newHealth) {
-    const sickClutch = fromId("sick-clutch");
-    const happyClutch = fromId("happy-clutch");
-
     health = newHealth;
 
-    if (health > 50) {
+    if (health > 70) {
         show(happyClutch);
         hide(sickClutch);
     } else {
@@ -110,12 +106,12 @@ function setProgressBar(percentage) {
     const progressBar = fromId("custom-progress-bar1");
 
     // let newColor = "red";
-    // if (percentage < 40){
+    // if (percentage < 50){
     //     newColor = gsap.utils.interpolate("red", "orange", percentage/100)
-    // } else if (percentage < 70){
+    // } else if (percentage <= 100){
     //     newColor = gsap.utils.interpolate("orange", "green", percentage/100)
     // }
-    let newColor = gsap.utils.interpolate(["red", "orange", "green"], percentage / 100)
+    let newColor = gsap.utils.interpolate(["red", "red", "orange", "green"], percentage / 100)
     gsap.to(progressBar, {
         x: `${percentage}%`,
         duration: 1,
@@ -339,10 +335,9 @@ fromId('nest-btn-mesange').addEventListener('click', () => toggleSound(birdSongs
 fromId('nest-btn-loriot').addEventListener('click', () => toggleSound(birdSongs.loriot));
 fromId('nest-btn-hulotte').addEventListener('click', () => toggleSound(birdSongs.hulotte));
 fromId('nest-btn-effraie').addEventListener('click', () => toggleSound(birdSongs.effraie));
-fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(sounds.effraie2));
+fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(birdSongs.effraie2));
 
 const songsResults = fromId("nest-results-container");
-
 
 function toggleSound(singObject) {
     songsResults.innerHTML = "Code: " + singObject.code
