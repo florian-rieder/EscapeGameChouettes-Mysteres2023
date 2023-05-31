@@ -1,0 +1,14 @@
+/* TEAM */
+	Web designer and developer: Florian Rieder
+	Contact: florian.rieder at unil.ch
+    Github: florian-rieder
+	Twitter: @RiederFlorian
+	From: Lausanne, Switzerland
+
+/* ASSETS */
+    Stanberry Font - by GrandChaos9000 (CC-BY-SA 3.0)
+
+/* SITE */
+	Last update: 2022/05/25
+	Language: English / French
+	Doctype: HTML5

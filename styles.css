@@ -100,9 +100,31 @@ button.sing-btn {
     margin: 1em;
 }
 
+button.playing-song {
+    background-color: rgb(251, 175, 145);
+}
+
 label {
-    font-size: 10pt;
+    font-size: 12pt;
     color: grey;
+}
+
+.checkbox-container {
+    display: inline-block;
+    margin: 20px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    /* Increase the scale value to make the checkbox larger */
+    transform: scale(1.5);
+    /* Margin with the label */
+    margin-right: 5px;
+}
+
+#nest-results-container {
+    height: 18pt;
+    font-size: 18pt;
+    font-weight: bold;
 }
 
 #back-btn {
@@ -154,7 +176,6 @@ label {
 .jumping-image-container {
     position: relative;
     height: 150px;
-    /* adjust to match your image height */
 }
 
 .jumping-image {

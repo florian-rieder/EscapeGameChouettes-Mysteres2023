@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="author" content="Université de Lausanne, Florian Rieder (florian.rieder at unil.ch)">
+    <meta name="robots" content="noindex">
+    <!-- We Are People, Not Machines -->
+    <link rel="author" href="static/humans.txt" />
+
     <title>Chouette, une escape game</title>
 
     <link rel="stylesheet" href="styles.css">
@@ -181,8 +186,44 @@
                             <div class="flex justify-center">
                                 <p id="nest-results-container"><!-- Populated by js --></p>
                             </div>
+                            <div id="songSelection">
+                                <p>Selectionner les cris/chants de chouettes effraies:</p>
+                                <div class="flex" style="justify-content: space-evenly;">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonA">
+                                        <label for="buttonA">A</label>
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonB">
+                                        <label for="buttonB">B</label>
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonC">
+                                        <label for="buttonC">C</label>
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonD">
+                                        <label for="buttonD">D</label>
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonE">
+                                        <label for="buttonE">E</label>
+                                    </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="buttonF">
+                                        <label for="buttonF">F</label>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: right;">
+                                    <button id="validate-song-submit" class="choice-btn">Valider</button>
+                                </div>
+                                <div>
+                                    <p id="song-choice-result"></p>
+                                    <button class="util-btn hidden" id="song-choice-next-step">Prochaine étape</button>
+                                </div>
+                            </div>
                         </div>
-                        <div id="nest-step-2">
+                        <div id="nest-step-2" class="hidden">
                             <h2>2. Déplacer le nichoir</h2>
                             <p>Quel est le meilleur endroit où placer le nid ?</p>
                             <div>

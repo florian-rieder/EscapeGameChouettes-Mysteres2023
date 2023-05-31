@@ -20,45 +20,67 @@ const hide = element => element.classList.add("hidden");
 /* --------------------------------- SETUP --------------------------------- */
 /* ------------------------------------------------------------------------- */
 
+
 const birdSongs = {
     merle: {
         code: 123,
         sound: new Howl({
-            src: ['static/audio/merle_noir.mp3']
+            src: ['static/audio/merle_noir.mp3'],
+            onend: function () {
+                fromId('nest-btn-merle').classList.remove("playing-song");
+            }
         }),
     },
     effraie: {
         code: 427,
         sound: new Howl({
-            src: ['static/audio/effraie_clochers.mp3']
+            src: ['static/audio/effraie_clochers.mp3'],
+            onend: function () {
+                fromId('nest-btn-effraie').classList.remove("playing-song");
+            }
         }),
     },
     hulotte: {
         code: 589,
         sound: new Howl({
-            src: ['static/audio/chouette_hulotte.mp3']
+            src: ['static/audio/chouette_hulotte.mp3'],
+            onend: function () {
+                fromId('nest-btn-hulotte').classList.remove("playing-song");
+            }
         }),
     },
     loriot: {
         code: 659,
         sound: new Howl({
-            src: ['static/audio/loriot.mp3']
+            src: ['static/audio/loriot.mp3'],
+            onend: function () {
+                fromId('nest-btn-loriot').classList.remove("active-button");
+            }
         }),
     },
     mesange: {
         code: 216,
         sound: new Howl({
-            src: ['static/audio/mesange_bleue.mp3']
+            src: ['static/audio/mesange_bleue.mp3'],
+            onend: function () {
+                fromId('nest-btn-mesange').classList.remove("playing-song");
+            }
         }),
     },
     effraie2: {
         code: 846,
         sound: new Howl({
-            src: ['static/audio/effraie_clochers.mp3']
+            src: ['static/audio/effraie_clochers.mp3'],
+            onend: function () {
+                fromId('nest-btn-effraie2').classList.remove("playing-song");
+            }
         }),
     }
 };
 
+// Make sure 3.1 checkboxes aren't still checked after a soft reload.
+const checkboxes = queryAll('.checkbox-container input[type="checkbox"]');
+checkboxes.forEach(box => box.checked = false);
 
 /* ------------------------------------------------------------------------- */
 /* ------------------------------- HEALTH BAR ------------------------------ */
@@ -105,12 +127,8 @@ function setProgressBar(percentage) {
 
     const progressBar = fromId("custom-progress-bar1");
 
-    // let newColor = "red";
-    // if (percentage < 50){
-    //     newColor = gsap.utils.interpolate("red", "orange", percentage/100)
-    // } else if (percentage <= 100){
-    //     newColor = gsap.utils.interpolate("orange", "green", percentage/100)
-    // }
+    // Red twice to make the red part more noticeable. Since we start at 30%
+    // health, that starting health should be more red-ish than orange-ish.
     let newColor = gsap.utils.interpolate(["red", "red", "orange", "green"], percentage / 100)
     gsap.to(progressBar, {
         x: `${percentage}%`,
@@ -329,32 +347,83 @@ bioBack3B.addEventListener("click", () => {
 /* ----------------------------- NEST WORKSHOP ----------------------------- */
 /* ------------------------------------------------------------------------- */
 
-
-fromId('nest-btn-merle').addEventListener('click', () => toggleSound(birdSongs.merle));
-fromId('nest-btn-mesange').addEventListener('click', () => toggleSound(birdSongs.mesange));
-fromId('nest-btn-loriot').addEventListener('click', () => toggleSound(birdSongs.loriot));
-fromId('nest-btn-hulotte').addEventListener('click', () => toggleSound(birdSongs.hulotte));
-fromId('nest-btn-effraie').addEventListener('click', () => toggleSound(birdSongs.effraie));
-fromId('nest-btn-effraie2').addEventListener('click', () => toggleSound(birdSongs.effraie2));
+// Step 1
+fromId('nest-btn-merle').addEventListener('click', (e) => toggleSound(e, birdSongs.merle));
+fromId('nest-btn-mesange').addEventListener('click', (e) => toggleSound(e, birdSongs.mesange));
+fromId('nest-btn-loriot').addEventListener('click', (e) => toggleSound(e, birdSongs.loriot));
+fromId('nest-btn-hulotte').addEventListener('click', (e) => toggleSound(e, birdSongs.hulotte));
+fromId('nest-btn-effraie').addEventListener('click', (e) => toggleSound(e, birdSongs.effraie));
+fromId('nest-btn-effraie2').addEventListener('click', (e) => toggleSound(e, birdSongs.effraie2));
 
 const songsResults = fromId("nest-results-container");
 
-function toggleSound(singObject) {
-    songsResults.innerHTML = "Code: " + singObject.code
+function toggleSound(event, singObject) {
     if (singObject.sound.playing()) {
         singObject.sound.stop();
+        event.target.classList.remove("playing-song"); // Remove the class from the button
+        songsResults.innerHTML = "";
+
     } else {
         stopAllSounds();
         singObject.sound.play();
+        event.target.classList.add("playing-song"); // Add the class to the button
+        songsResults.innerHTML = "Code: " + singObject.code;
     }
 }
 
 function stopAllSounds() {
+    // iterate through the birdSongs object to stop all sounds
     for (const [_key, value] of Object.entries(birdSongs)) {
         value.sound.stop();
     }
+
+    const buttons = queryAll(".sing-btn");
+    buttons.forEach((button) => {
+        button.classList.remove("playing-song"); // Remove the class from all buttons
+    });
+
+    songsResults.innerHTML = "";
 }
 
+fromId("validate-song-submit").addEventListener("click", validateSelection);
+fromId("song-choice-next-step").addEventListener("click", () => {
+    // Go to the next step
+    hide(fromId("nest-step-1"));
+    show(fromId("nest-step-2"));
+});
+
+function validateSelection() {
+    // Get the relevant checkboxes
+    const checkboxB = fromId('buttonB');
+    const checkboxF = fromId('buttonF');
+    const result = fromId("song-choice-result");
+    const nextStepButton = fromId("song-choice-next-step");
+
+    // Check if the checkboxes corresponding to the barn owl songs are selected
+    const isBarnOwlSong1Selected = checkboxB.checked;
+    const isBarnOwlSong2Selected = checkboxF.checked;
+
+    // Validate the selection
+    if (isBarnOwlSong1Selected && isBarnOwlSong2Selected) {
+        result.classList.add("success");
+        result.classList.remove("error");
+
+        // Disable submit button and checkboxes
+        fromId("validate-song-submit").disabled = true;
+        const checkboxes = queryAll('.checkbox-container input[type="checkbox"]');
+        checkboxes.forEach(box => box.disabled = true);
+
+        result.innerHTML = "Félicitations ! Vous pouvez passer à l'étape suivante";
+        show(nextStepButton);
+    } else {
+        result.classList.remove("success");
+        result.classList.add("error");
+        result.innerHTML = "Désolé, vous n'avez pas correctement identifié les chants de chouette effraie. Réessayez !"
+    }
+}
+
+
+// Step 2
 const nestPlacementChoices = fromId("nest-choices");
 const nestResult = fromId("nest-placement-result");
 
@@ -368,7 +437,6 @@ btnEast.addEventListener("click", () => nestChoice("east"));
 btnSouth.addEventListener("click", () => nestChoice("south"));
 btnWest.addEventListener("click", () => nestChoice("west"));
 
-
 function nestChoice(choice) {
     hide(nestPlacementChoices);
 
@@ -381,7 +449,7 @@ function nestChoice(choice) {
         resultText = "Bravo ! Votre nichoir est bien placé, votre nichée va mieux !";
         nestResult.classList.add("success");
         setHealth(health + 20);
-        //nestWorkshopBtn.disabled = true;
+        nestWorkshopBtn.disabled = true;
 
         returnButton.addEventListener("click", displayHome);
         returnButton.innerHTML = "Retour au menu";
