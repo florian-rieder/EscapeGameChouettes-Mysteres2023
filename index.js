@@ -394,7 +394,11 @@ fromId("song-choice-next-step").addEventListener("click", () => {
 
 function validateSelection() {
     // Get the relevant checkboxes
+    const checkboxA = fromId('buttonA');
     const checkboxB = fromId('buttonB');
+    const checkboxC = fromId('buttonC');
+    const checkboxD = fromId('buttonD');
+    const checkboxE = fromId('buttonE');
     const checkboxF = fromId('buttonF');
     const result = fromId("song-choice-result");
     const nextStepButton = fromId("song-choice-next-step");
@@ -402,9 +406,10 @@ function validateSelection() {
     // Check if the checkboxes corresponding to the barn owl songs are selected
     const isBarnOwlSong1Selected = checkboxB.checked;
     const isBarnOwlSong2Selected = checkboxF.checked;
+    const areOtherSongsSelected = checkboxA.checked || checkboxC.checked || checkboxD.checked || checkboxE.checked
 
     // Validate the selection
-    if (isBarnOwlSong1Selected && isBarnOwlSong2Selected) {
+    if ((isBarnOwlSong1Selected && isBarnOwlSong2Selected) && !areOtherSongsSelected) {
         result.classList.add("success");
         result.classList.remove("error");
 
