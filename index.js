@@ -54,7 +54,7 @@ const birdSongs = {
         sound: new Howl({
             src: ['static/audio/loriot.mp3'],
             onend: function () {
-                fromId('nest-btn-loriot').classList.remove("active-button");
+                fromId('nest-btn-loriot').classList.remove("playing-song");
             }
         }),
     },
@@ -81,6 +81,7 @@ const birdSongs = {
 // Make sure 3.1 checkboxes aren't still checked after a soft reload.
 const checkboxes = queryAll('.checkbox-container input[type="checkbox"]');
 checkboxes.forEach(box => box.checked = false);
+
 
 /* ------------------------------------------------------------------------- */
 /* ------------------------------- HEALTH BAR ------------------------------ */
